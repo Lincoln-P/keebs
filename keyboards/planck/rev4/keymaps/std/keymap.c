@@ -39,6 +39,7 @@ enum planck_keycodes {
 #define NAV MO(_NAV)
 #define NUM MO(_NUM)
 
+// persistant default layer setting
 #define QWERTY PDF(_QWERTY)
 #define COLEMAK PDF(_CANARY)
 
@@ -52,7 +53,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |   Z  |   X  |   C  |   V  |   B  |      |      |   N  |   M  |   ,  |   .  |   /  |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      | Esc  |Sp_NAV|             | Shft | NUM  |      |      |      |
+ * |      |      |      | Esc  |Sp_NAV|             |Ent_SF| NUM  |      |      |      |
  * `------------------------------------------------------------------------------------
  */
 [_QWERTY] = LAYOUT_planck_grid(
@@ -214,9 +215,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         if (!eeconfig_is_enabled()) {
             eeconfig_init();
         }
-        keymap_config.raw = eeconfig_read_keymap();
+        eeconfig_read_keymap(&keymap_config);
         keymap_config.nkro = 1;
-        eeconfig_update_keymap(keymap_config.raw);
+        eeconfig_update_keymap(&keymap_config);
       }
       return false;
       break;
