@@ -47,3 +47,6 @@
 
 // Most tactile encoders have detents every 4 stages
 #define ENCODER_RESOLUTION 4
+
+// tap-toggle definition - double tap for toggle
+#define TAPPING_TOGGLE 2
